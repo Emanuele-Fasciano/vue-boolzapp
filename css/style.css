@@ -10,7 +10,6 @@
  .app-container{
     width: 90%;
     height: 95vh;
-    background-color: red;
     margin: auto;
     margin-top: 1rem;
  }
@@ -21,33 +20,38 @@
  }
 
  .col-5{
-    background-color: green;
     padding: 0;
-
+    height: 100%;
  }
 
   .col-7{
-      /* background-color: blue; */
       padding: 0;
-
+      height: 100%;
   }
 
-  /* mio contatto */
+  /* my contact */
   .my-contact{
     height: 60px;
+    background-color: hsl(0deg 0% 92%);
+    border-right: 2px solid hsl(0, 3%, 81%);
   }
 
   img{
     width: 50px;
     border-radius: 50%;
+    margin-top: 5px;
+    margin-left: 10px;
   }
 
   .my-contact .options{
     width: 70px;
+    margin-right: 20px;
   }
 
 .my-contact .options i {
     font-size: 1.3rem;
+    color: hsl(0deg 0% 69%);
+    cursor: pointer;
 }
 
 
@@ -55,7 +59,7 @@
 
 .notice{
     height: 70px;
-    background-color: aqua;
+    background-color: #8EDAFC;
 }
 
 .notice .back{
@@ -66,8 +70,9 @@
 }
 
 .notice .back i{
-    color: aqua;
+    color: #8EDAFC;
     font-size: 1.3rem;
+    cursor: pointer;
 }
 
 .notice .bold-text{
@@ -84,16 +89,20 @@
 
 /* contact-list */
 .contact-list .contact-box{
-    background-color: antiquewhite;
+    background-color: #FFFFFF;
+}
+
+.contact-list .selected{
+    background-color: hsl(180deg 5% 92%);
 }
 
 .contact-list .contact-box{
-    border: 1px solid gray;
+    border: 1px solid hsl(0, 3%, 81%);
 }
 
 /* contact-open */
 .contact-open{
-    background-color: antiquewhite;
+    background-color: hsl(0deg 0% 92%);
     height: 60px;
 }
 
@@ -102,29 +111,63 @@
     margin-right: 1rem;
 }
 
+.contact-open .details i{
+    color: hsl(0deg 0% 69%);
+    cursor: pointer;
+}
+
 /* message-area */
 .message-area{
     height: calc(100% - 60px);
     background-image:url(../img/mine.jpg);
     background-size: contain;
     padding-top: 30px;
+    position: relative;
 }
 
-/* CLASSI MESSAGGI */
+/* MESSAGE CLASS */
 .box-message{
-    height: 40px;
     width: 250px;
     line-height: 40px;
+    border-radius: 10px;
+    padding: 5px;
 }
 
 .sent{
 
-    background-color: rgb(124, 204, 144);
+    background-color: hsl(94deg 84% 85%);
     margin-left: 50%;
     margin-right: 30px;
 }
 
 .received{
-    background-color: wheat;
+    background-color: hsl(0deg 0% 100%);
     margin-left: 10%;
 }
+
+
+/* write-message-area */
+
+.write-message{
+    height: 60px;
+    width: 100%;
+    background-color: hsl(27deg 27% 94%);
+    position: absolute;
+    bottom: 0;
+}
+
+.write-message input{
+    margin-top: 15px;
+}
+
+.write-message span {
+    margin-top: 20px;
+    color: gray;
+}
+
+.write-message span i{
+    cursor: pointer;
+}
+
+
+

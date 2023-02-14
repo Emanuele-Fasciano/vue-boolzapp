@@ -172,13 +172,44 @@ app = Vue.createApp({
                 }
             ],
 
-            activeChat: 0
+            activeChat: 0,
+
+            newMessage: {
+                date: '',
+                text: '',
+                status: 'sent'
+            }
         }
     },
 
     methods: {
         swithToChat(index){
             this.activeChat = index
+        },
+
+        sendMessage(){
+            const staticMessage = {
+                date: '',
+                text: this.newMessage.text,
+                status: 'sent'
+            }
+
+            this.contacts[this.activeChat].messages.push(staticMessage)
+
+            this.newMessage.text = ""
+
+        },
+
+        okMessage(){
+            setTimeout(() =>{
+            const newMessage = {
+                date: '',
+                text: 'ok',
+                status: 'received'
+            }
+
+            this.contacts[this.activeChat].messages.push(newMessage)
+            },1000)
         }
     }
 });

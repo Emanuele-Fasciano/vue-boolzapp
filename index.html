@@ -52,26 +52,25 @@
                         </span>
                         <div class="text">
                             <p class="bold-text">Ricevi notifiche di nuovi messaggi</p>
-                            <p class="underline-text">Attiva notifiche desktop</p>
+                            <p class="underline-text text-muted">Attiva notifiche desktop</p>
                         </div>
                     </div>
 
                     <!-- container search -->
-                    <div class="search">
-                        <nav class="navbar bg-light">
-                            <div class="container-fluid w-100">
-                                <form class="d-flex" role="search">
-                                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                                    <button class="btn btn-outline-success" type="submit">Search</button>
-                                </form>
-                            </div>
-                        </nav>
+                    <div class="input-group px-2 py-1 ">
+                         <button class="btn btn-outline-secondary" type="button" id="button-addon1">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                         </button>
+                            <input type="text" class="form-control" placeholder="Cerca o inizia una nuova chat" aria-label="Example text with button addon"
+                                    aria-describedby="button-addon1">
                     </div>
 
                     <!-- contact-list -->
                     <div class="contact-list">
                         <div class="contact-box py-1"
+                             :class="(contact == contacts[activeChat]) ? 'selected' : ''"
                              v-for="(contact, index) in contacts"
+                             v-show=""
                              @click="swithToChat(index)">
                             <img :src="'./img/avatar' + (contact.avatar) + '.jpg'" alt="">
                             <span>{{contact.name}}</span>
@@ -83,9 +82,9 @@
                 <div class="col-7">
                     <!-- contact-open -->
                     <div class="contact-open d-flex justify-content-between">
-                        <div class="contact-open-box py-1">
-                            <img src="./img/avatar_1.jpg" alt="">
-                            <span>Michele</span>
+                        <div class="contact-open-box">
+                            <img :src="'./img/avatar' + (contacts[activeChat].avatar) + '.jpg'" alt="">
+                            <span>{{ contacts[activeChat].name }}</span>
                         </div>
                         <div class="details d-flex justify-content-between align-items-center">
                             <i class="fa-solid fa-magnifying-glass"></i>
@@ -94,16 +93,26 @@
                         </div>
                     </div>
                     <!-- message-area -->
-                    <div class="message-area"
-                         v-for="contact in contacts">
-
+                    <div class="message-area">
                         <div v-for="(message, index) in contacts[activeChat].messages"
                              class="mb-3 box-message"
                              :class="(message.status == 'sent') ? 'sent' : 'received'"
                             >
                                {{ message.text }}
                         </div>
+                        <!-- write-message-area -->
+                        <div class="write-message">
+                            <div class="input-group mb-3">
+                                <span class="px-3"><i class="fa-regular fa-face-smile"></i></span>
+                                <input type="text" class="form-control"
+                                       placeholder="Scrivi un messaggio"
+                                       v-model="newMessage.text"
+                                       @keyUp.enter="sendMessage(),okMessage()">
+                                <span class="px-3"><i class="fa-solid fa-microphone"></i></span>
+                            </div>
+                        </div>
                     </div>
+
             </div>
         </div>
     </div>
