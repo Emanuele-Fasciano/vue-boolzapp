@@ -62,7 +62,9 @@
                             <i class="fa-solid fa-magnifying-glass"></i>
                          </button>
                             <input type="text" class="form-control" placeholder="Cerca o inizia una nuova chat" aria-label="Example text with button addon"
-                                    aria-describedby="button-addon1">
+                                    aria-describedby="button-addon1"
+                                    v-model="searchContact"
+                                    @keyup="searchWord()">
                     </div>
 
                     <!-- contact-list -->
@@ -70,8 +72,8 @@
                         <div class="contact-box py-1"
                              :class="(contact == contacts[activeChat]) ? 'selected' : ''"
                              v-for="(contact, index) in contacts"
-                             v-show=""
-                             @click="swithToChat(index)">
+                             @click="swithToChat(index)"
+                             v-show="contact.visible == true">
                             <img :src="'./img/avatar' + (contact.avatar) + '.jpg'" alt="">
                             <span>{{contact.name}}</span>
                         </div>

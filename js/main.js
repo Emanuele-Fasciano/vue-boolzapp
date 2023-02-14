@@ -178,7 +178,9 @@ app = Vue.createApp({
                 date: '',
                 text: '',
                 status: 'sent'
-            }
+            },
+
+            searchContact:""
         }
     },
 
@@ -210,6 +212,16 @@ app = Vue.createApp({
 
             this.contacts[this.activeChat].messages.push(newMessage)
             },1000)
+        },
+
+        searchWord(){
+            for(contact of this.contacts){
+                if(!contact.name.includes(this.searchContact)){
+                    contact.visible = false
+                }
+
+            }
+
         }
     }
 });
