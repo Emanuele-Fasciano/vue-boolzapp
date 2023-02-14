@@ -71,7 +71,8 @@
                     <!-- contact-list -->
                     <div class="contact-list">
                         <div class="contact-box py-1"
-                             v-for="(contact, index) in contacts">
+                             v-for="(contact, index) in contacts"
+                             @click="swithToChat(index)">
                             <img :src="'./img/avatar' + (contact.avatar) + '.jpg'" alt="">
                             <span>{{contact.name}}</span>
                         </div>
@@ -91,14 +92,18 @@
                             <i class="fa-solid fa-paperclip"></i>
                             <i class="fas fa-ellipsis-v"></i>
                         </div>
-
+                    </div>
                     <!-- message-area -->
-                    <div class="message-area">
-                        
-                    </div>
+                    <div class="message-area"
+                         v-for="contact in contacts">
 
+                        <div v-for="(message, index) in contacts[activeChat].messages"
+                             class="mb-3 box-message"
+                             :class="(message.status == 'sent') ? 'sent' : 'received'"
+                            >
+                               {{ message.text }}
+                        </div>
                     </div>
-
             </div>
         </div>
     </div>

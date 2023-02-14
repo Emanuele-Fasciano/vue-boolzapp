@@ -170,7 +170,15 @@ app = Vue.createApp({
                             }
                         ],
                 }
-]
+            ],
+
+            activeChat: 0
+        }
+    },
+
+    methods: {
+        swithToChat(index){
+            this.activeChat = index
         }
     }
 });
