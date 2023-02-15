@@ -172,55 +172,69 @@ app = Vue.createApp({
                 }
             ],
 
+            //variabile che tiene traccia della chat selezionata
             activeChat: 0,
 
+            //object del messaggio vuoto da inviare
             newMessage: {
                 date: '',
                 text: '',
                 status: 'sent'
             },
 
+            //variabile dove finiscono le lettere che inserisce l'utente per cercare una chat
             searchContact:""
         }
     },
 
     methods: {
+        // FUNZIONI:
+        // passare alla chat selezionata
         swithToChat(index){
             this.activeChat = index
         },
 
+        // inviare il messaggio digitato
         sendMessage(){
-            const staticMessage = {
+            const staticMessage = {  // trasformo il messaggio proxy in un messaggio statico
                 date: '',
                 text: this.newMessage.text,
                 status: 'sent'
             }
-
+            
+            //pusho il messaggio statico nell' array messages della chat selezionata
             this.contacts[this.activeChat].messages.push(staticMessage)
 
+            //pulisco il campo del messaggio dopo l'invio
             this.newMessage.text = ""
 
         },
 
+        // dopo un secondo arriverà la risposta "ok"
         okMessage(){
             setTimeout(() =>{
-            const newMessage = {
+            const okMessage = { //creo un messaggio statico con text "ok"
                 date: '',
                 text: 'ok',
                 status: 'received'
             }
 
-            this.contacts[this.activeChat].messages.push(newMessage)
+            //pusho il messaggio nell'array
+            this.contacts[this.activeChat].messages.push(okMessage)
             },1000)
         },
-
+        
+        // ad ogni lettera premuta confronto il testo digitato con in nome del contatto
         searchWord(){
             for(contact of this.contacts){
                 if(!contact.name.includes(this.searchContact)){
-                    contact.visible = false
+                    contact.visible = false // se il nome non include le lettere digitate il contatto sparisce
                 }
-
+                if(this.searchContact == ""){  //se il campo di ricerca torna vuoto tutti i contatti sono visibili
+                    contact.visible = true
+                }
             }
+
 
         }
     }

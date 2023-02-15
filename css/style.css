@@ -6,6 +6,19 @@
      max-width: 100%;
  }
 
+ body{
+    height: 100vh;
+    background-image: linear-gradient(
+        to bottom,
+        #009688 0px,
+        #009688 15vh,
+        #D9DBD4 15vh,
+        #D9DBD4
+    );
+    overflow: hidden;
+    
+ }
+
  /* container app */
  .app-container{
     width: 90%;
@@ -39,7 +52,6 @@
   img{
     width: 50px;
     border-radius: 50%;
-    margin-top: 5px;
     margin-left: 10px;
   }
 
@@ -88,8 +100,8 @@
 }
 
 /* contact-list */
-.contact-list .contact-box{
-    background-color: #FFFFFF;
+.contact-list{
+    overflow: auto;
 }
 
 .contact-list .selected{
@@ -97,7 +109,27 @@
 }
 
 .contact-list .contact-box{
-    border: 1px solid hsl(0, 3%, 81%);
+    border-bottom: 1px solid hsl(0, 3%, 81%);
+    background-color: #FFFFFF;
+    cursor: pointer;
+    position: relative;
+}
+
+.contact-box:hover{
+    background-color: hsl(180deg 5% 92%);
+}
+
+.contact-list .last-message{
+    font-size: 0.7rem;
+}
+
+.time-last-message{
+    font-size: 0.6rem;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-top: 8px;
+    margin-right: 8px;
 }
 
 /* contact-open */
@@ -105,6 +137,11 @@
     background-color: hsl(0deg 0% 92%);
     height: 60px;
 }
+
+.contact-open .latest-access{
+    font-size: 0.8rem;
+}
+
 
 .contact-open .details{
     width: 80px;
@@ -118,31 +155,36 @@
 
 /* message-area */
 .message-area{
-    height: calc(100% - 60px);
+    height: calc(100% - 130px);
     background-image:url(../img/mine.jpg);
     background-size: contain;
     padding-top: 30px;
-    position: relative;
+    overflow: auto;
 }
+
+.message-area .minutes-message{
+    font-size: 0.7rem;
+    text-align: right;
+}
+
+
 
 /* MESSAGE CLASS */
 .box-message{
-    width: 250px;
-    line-height: 40px;
-    border-radius: 10px;
-    padding: 5px;
+    max-width: 70%;
+    border-radius: 5px;
+    min-width: 300px
 }
 
 .sent{
-
     background-color: hsl(94deg 84% 85%);
-    margin-left: 50%;
-    margin-right: 30px;
+    align-self: flex-end;
+    margin-right: 20px;
 }
 
 .received{
     background-color: hsl(0deg 0% 100%);
-    margin-left: 10%;
+    margin-left: 20px;
 }
 
 
@@ -152,8 +194,7 @@
     height: 60px;
     width: 100%;
     background-color: hsl(27deg 27% 94%);
-    position: absolute;
-    bottom: 0;
+    margin-bottom: 11px;
 }
 
 .write-message input{
