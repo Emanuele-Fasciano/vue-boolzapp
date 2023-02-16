@@ -174,6 +174,7 @@ app = Vue.createApp({
 
             //variabile che tiene traccia della chat selezionata
             activeChat: 0,
+           
 
             //object del messaggio vuoto da inviare
             newMessage: {
@@ -234,9 +235,8 @@ app = Vue.createApp({
                     contact.visible = true
                 }
             }
+        },
 
-
-        }
     }
 });
 

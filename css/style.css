@@ -104,15 +104,16 @@
     overflow: auto;
 }
 
-.contact-list .selected{
-    background-color: hsl(180deg 5% 92%);
-}
 
 .contact-list .contact-box{
-    border-bottom: 1px solid hsl(0, 3%, 81%);
+    border-bottom: 1px solid hsl(180deg 5% 92%);
     background-color: #FFFFFF;
     cursor: pointer;
     position: relative;
+}
+
+.contact-list .selected{
+    background-color: hsl(180deg 5% 92%);
 }
 
 .contact-box:hover{

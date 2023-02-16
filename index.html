@@ -77,7 +77,7 @@
                              <div class="details-contact d-flex align-items-center">
                                 <img :src="'./img/avatar' + (contact.avatar) + '.jpg'" alt="">
                                  <p class="d-inline-block ms-2"> {{contact.name}} <br>
-                                 <span class="last-message text-muted">Ultimo messaggio inviato</span></p>
+                                 <span class="last-message text-muted">{{contact.messages[contact.messages.length - 1].text}}</span></p>
                              </div>
                              <span class="time-last-message text-muted">12:00</span>
                         </div>
@@ -101,12 +101,11 @@
                     </div>
                     <!-- message-area -->
                     <div class="message-area flex-grow-1 d-flex flex-column align-items-start">
-                        <div v-for="(message, index) in contacts[activeChat].messages"
-                             @click="openWindow(index)"
+                        <div v-for="(message, i) in contacts[activeChat].messages"
                              class="mb-3 box-message"
                              :class="(message.status == 'sent') ? 'sent' : 'received'"
                             ><p class="m-0 ps-2 pt-2"> {{ message.text }}</p>
-                            <p class="minutes-message m-0 pb-1 pe-1 text-muted">15:30</p>
+                            <p class="minutes-message m-0 pb-1 pe-1 text-muted">{{ message.date }}</p>
                         </div>
                     </div>
                     <!-- write-message-area -->
