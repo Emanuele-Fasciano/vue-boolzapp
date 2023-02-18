@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="./css/style.css">
 
     <!-- link Vue -->
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src= https://cdn.jsdelivr.net/npm/vue/dist/vue.global.min.js></script>
 
     <!-- link script -->
     <script type="text/javascript" src="./js/main.js" defer></script>
@@ -70,7 +70,7 @@
                     <!-- contact-list -->
                     <div class="contact-list flex-grow-1">
                         <div class="contact-box py-1"
-                             :class="(contact == contacts[activeChat]) ? 'selected' : ''"
+                             :class="(contact == selectedContact) ? 'selected' : ''"
                              v-for="(contact, index) in contacts"
                              @click="swithToChat(index)"
                              v-show="contact.visible == true">
@@ -89,8 +89,8 @@
                     <!-- contact-open -->
                     <div class="contact-open d-flex justify-content-between">
                         <div class="contact-open-box d-flex align-items-center">
-                            <img :src="'./img/avatar' + (contacts[activeChat].avatar) + '.jpg'" alt="">
-                            <p class="m-0 ms-2">{{ contacts[activeChat].name }} <br>
+                            <img :src="'./img/avatar' + (selectedContact.avatar) + '.jpg'" alt="">
+                            <p class="m-0 ms-2">{{ selectedContact.name }} <br>
                              <span class="latest-access text-muted">Ultimo accesso oggi alle 12:00</span></p>
                         </div>
                         <div class="details d-flex justify-content-between align-items-center">
@@ -101,26 +101,36 @@
                     </div>
                     <!-- message-area -->
                     <div class="message-area flex-grow-1 d-flex flex-column align-items-start">
-                        <div v-for="(message, i) in contacts[activeChat].messages"
+                        <div v-for="(message, messageIndex) in selectedContact.messages"
                              class="mb-3 box-message"
                              :class="(message.status == 'sent') ? 'sent' : 'received'"
+                             @click="toggleWindow(messageIndex)"
+                             :tabindex='messageIndex'
+                             @blur="activeMessage.open = false"
                             ><p class="m-0 ps-2 pt-2"> {{ message.text }}</p>
                             <p class="minutes-message m-0 pb-1 pe-1 text-muted">{{ message.date }}</p>
-                        </div>
-                    </div>
-                    <!-- write-message-area -->
-                    <div class="write-message">
-                        <div class="input-group mb-3">
-                            <span class="px-3"><i class="fa-regular fa-face-smile"></i></span>
-                            <input type="text" class="form-control"
-                                   placeholder="Scrivi un messaggio"
-                                   v-model="newMessage.text"
-                                   @keyUp.enter="sendMessage(),okMessage()">
-                            <span class="px-3"><i class="fa-solid fa-microphone"></i></span>
-                        </div>
-                    </div>
+                            <div class="optionWindow"
+                                 v-if="activeMessage.open && activeMessage.index == messageIndex">
+                                <p class="deleteMsg text-center py-1"
+                                    @click="deleteMessage(messageIndex)">Delete message</p>
+                                <p class="infoMsg text-center py-1">Message info</p>
+                            </div>
 
-            </div>
+                            </div>
+                        </div>
+                        <!-- write-message-area -->
+                        <div class="write-message">
+                            <div class="input-group mb-3">
+                                <span class="px-3"><i class="fa-regular fa-face-smile"></i></span>
+                                <input type="text" class="form-control"
+                                       placeholder="Scrivi un messaggio"
+                                       v-model="newMessage.text"
+                                       @keyUp.enter="sendMessage(),okMessage()">
+                                <span class="px-3"><i class="fa-solid fa-microphone"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
         </div>
     </div>
 

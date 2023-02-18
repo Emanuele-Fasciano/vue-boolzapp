@@ -168,13 +168,38 @@
     text-align: right;
 }
 
+.message-area .optionWindow{
+    width: 150px;
+    background-color: whitesmoke;
+    border: 1px solid rgb(170, 170, 170);
+    position: absolute;
+    left: 45%;
+    z-index: 1;
+    top:40px;
+    border-radius: 5px;
+}
+
+.message-area .deleteMsg, .infoMsg{
+    cursor: pointer;
+}
+
+.message-area .deleteMsg:hover {
+    background-color: rgb(219, 216, 216);
+}
+
+.message-area .infoMsg:hover {
+    background-color: rgb(219, 216, 216);
+}
+
 
 
 /* MESSAGE CLASS */
 .box-message{
     max-width: 70%;
     border-radius: 5px;
-    min-width: 300px
+    min-width: 300px;
+    position: relative;
+    cursor: pointer;
 }
 
 .sent{
